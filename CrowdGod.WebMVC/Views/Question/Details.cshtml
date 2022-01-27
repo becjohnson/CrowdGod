@@ -1,0 +1,66 @@
+﻿@model CrowdGod.Data.Question
+
+@{
+    ViewData["Title"] = "Details";
+}
+<a asp-action="Index">Back to List</a>
+<h1 class="text-light text-center">@Html.DisplayFor(model => model.Title)</h1>
+<a asp-action="Edit" asp-route-id="@Model?.QuestionId">Edit</a>
+<hr class="text-light" />
+<div class="container bg-dark">
+    <div class="row text-center">
+        <div class="col-12">
+            <h3 class="text-light">@Html.DisplayFor(model => model.Content)</h3>
+        </div>
+    </div>
+    <br />
+    <div class="container text-center justify-content-evenly">
+        <div class="row">
+            <div class="col-6 bg-light">
+                @Html.DisplayFor(model => model.CreatedUtc)
+            </div>
+            <div class="col-6 bg-light">
+                @Html.DisplayFor(model => model.ModifiedUtc)
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+@foreach (var answer in Model.Answers)
+{
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => answer.Content)</h5>
+                <a class="nav-link text-light" asp-controller="Reply" asp-action="Create" asp-route-id="@answer.AnswerId">
+                    <div class="w-300 btn btn-danger">Reply</div>
+                </a>
+                <a asp-action="Edit" class="card-link" asp-route-id="@answer.AnswerId">Edit</a>
+                <a asp-action="Details" class="card-link" asp-route-id="@answer.AnswerId">Details</a>
+                <a asp-action="Delete" class="card-link" asp-route-id="@answer.AnswerId">Delete</a>
+            </div>
+            <div class="card-footer text-muted">
+                @Html.DisplayFor(modelItem => answer.CreatedUtc)
+            </div>
+        </div>
+    </div>
+    <br />
+    @foreach (var reply in Model.Replies)
+    {
+        <div class="container bg-dark text-light">
+            <div class="row">
+                <div class="col-5">
+                    @Html.DisplayFor(modelItem => reply.Content)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    @Html.DisplayFor(modelItem => reply.CreatedUtc)
+                </div>
+            </div>
+        </div>
+        <a asp-action="Edit" class="card-link" asp-route-id="@reply.ReplyId">Edit</a>
+        <a asp-action="Details" class="card-link" asp-route-id="@reply.ReplyId">Details</a>
+        <a asp-action="Delete" class="card-link" asp-route-id="@reply.ReplyId">Delete</a>
+    }
+}

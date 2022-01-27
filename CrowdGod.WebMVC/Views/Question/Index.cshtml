@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CrowdGod.Data.Question>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-light">Questions</h1>
+
+<p>
+    <a class="nav-link text-light" asp-controller="Question" asp-action="Create">
+        <div class="w-300 btn btn-danger">Ask a question!</div>
+    </a>
+</p>
+@foreach (var item in Model)
+{
+    <div class="card text-center">
+        <div class="card-header">
+            @Html.DisplayFor(modelItem => item.Title)
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Content)</h5>
+            <a class="nav-link text-light" asp-controller="Answer" asp-action="Create" asp-route-id="@item.QuestionId">
+                <div class="w-300 btn btn-danger">Answer Now</div>
+            </a>
+            <a asp-action="Edit" class="card-link" asp-route-id="@item.QuestionId">Edit</a>
+            <a asp-action="Details" class="card-link" asp-route-id="@item.QuestionId">Details</a>
+            <a asp-action="Delete" class="card-link" asp-route-id="@item.QuestionId">Delete</a>
+        </div>
+        <div class="card-footer text-muted">
+            @Html.DisplayFor(modelItem => item.CreatedUtc)
+        </div>
+    </div>
+    <br />
+}

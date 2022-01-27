@@ -1,0 +1,94 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    color: floralwhite;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+div {
+    border-radius: 15px;
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+}
+
+h2 {
+    font-family: 'Reggae One', cursive;
+    color: red;
+}
+
+h3 {
+    font-family: 'Roboto Mono', monospace;
+}
+ul {
+    font-family: 'Roboto Mono', monospace;
+    list-style: none;    
+}
+h4 {
+    font-size: large;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+}
+
+.box {
+    border: 3px solid red;
+    width: fit-content;
+    height: fit-content;
+}
+.nav-item {
+    margin: 25px;
+}
+
+body {
+    background-color: darkgray;
+}
+
+table {
+    border-radius: 15pt;
+    background-color: white;
+}
+
+tbody {
+    border-radius: 15pt;
+}
+
+textarea {
+    border: none;
+    background-color: lightgray;
+    height: 200px;
+    width: 700px;
+    border-radius: 15pt;
+    fo
+}
+
+.link {
+    color: white;
+}
+
+hr {
+    color: black;
+    border-radius: 15pt;
+}
+
+input {
+    height: 40px;
+    width: 300px;
+    border: none;
+}
+.questions {
+    display: inline-block;
+}
