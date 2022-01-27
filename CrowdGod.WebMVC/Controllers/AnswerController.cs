@@ -119,7 +119,7 @@ namespace CrowdGod.WebMVC.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Question", new { @id = answer.QuestionId });
             }
             ViewData["QuestionId"] = new SelectList(_context.Questions, "QuestionId", "Title", answer.QuestionId);
             return View(answer);
@@ -152,7 +152,7 @@ namespace CrowdGod.WebMVC.Controllers
             var answer = await _context.Answers.FindAsync(id);
             _context.Answers.Remove(answer);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Question", new { @id = answer.QuestionId });
         }
 
         private bool AnswerExists(int id)

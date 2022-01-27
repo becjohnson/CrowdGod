@@ -1,8 +1,4 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -60,10 +56,10 @@ namespace CrowdGod.WebMVC.Controllers
         [Route("Reply/Create/{id:int}")]
         public async Task<IActionResult> Create(int id, [Bind("ReplyId,Content")] Reply reply)
         {
+            reply.AnswerId = id;
             var answer = _context.Answers.SingleOrDefault(a => a.AnswerId == id);
             answer.QuestionId = reply.QuestionId;
             var question = _context.Questions.SingleOrDefault(q => q.QuestionId == reply.QuestionId);
-            reply.QuestionId = question.QuestionId;
             reply.AnswerId = id;
             reply.Answer = answer;
             reply.CreatedUtc = DateTime.UtcNow;
@@ -72,9 +68,8 @@ namespace CrowdGod.WebMVC.Controllers
             {
                 _context.Replies.Add(reply);
                 answer.Replies.Add(reply);
-                question.Replies.Add(reply);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Question", new { @id = answer.QuestionId });
+                return RedirectToAction("Details", "Question", new { @id = .QuestionId });
             }
             return View(reply);
         }

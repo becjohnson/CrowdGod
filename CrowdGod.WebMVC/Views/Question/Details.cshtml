@@ -26,6 +26,7 @@
     </div>
     <br />
 </div>
+<h1 class="text-light">Answers</h1>
 @foreach (var answer in Model.Answers)
 {
     <div class="container">
@@ -35,9 +36,9 @@
                 <a class="nav-link text-light" asp-controller="Reply" asp-action="Create" asp-route-id="@answer.AnswerId">
                     <div class="w-300 btn btn-danger">Reply</div>
                 </a>
-                <a asp-action="Edit" class="card-link" asp-route-id="@answer.AnswerId">Edit</a>
-                <a asp-action="Details" class="card-link" asp-route-id="@answer.AnswerId">Details</a>
-                <a asp-action="Delete" class="card-link" asp-route-id="@answer.AnswerId">Delete</a>
+                <a asp-controller="Answer" asp-action="Edit" class="card-link" asp-route-id="@answer.AnswerId">Edit</a>
+                <a asp-controller="Answer" asp-action="Details" class="card-link" asp-route-id="@answer.AnswerId">Details</a>
+                <a asp-controller="Answer" asp-action="Delete" class="card-link" asp-route-id="@answer.AnswerId">Delete</a>
             </div>
             <div class="card-footer text-muted">
                 @Html.DisplayFor(modelItem => answer.CreatedUtc)
@@ -59,8 +60,8 @@
                 </div>
             </div>
         </div>
-        <a asp-action="Edit" class="card-link" asp-route-id="@reply.ReplyId">Edit</a>
-        <a asp-action="Details" class="card-link" asp-route-id="@reply.ReplyId">Details</a>
-        <a asp-action="Delete" class="card-link" asp-route-id="@reply.ReplyId">Delete</a>
+        <a asp-action="Edit" asp-controller="Reply" class="card-link" asp-route-id="@reply.ReplyId">Edit</a>
+        <a asp-action="Details" asp-controller="Reply" class="card-link" asp-route-id="@reply.ReplyId">Details</a>
+        <a asp-action="Delete" asp-controller="Reply"  class="card-link" asp-route-id="@reply.ReplyId">Delete</a>
     }
 }

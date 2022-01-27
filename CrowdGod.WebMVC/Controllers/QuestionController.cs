@@ -132,6 +132,8 @@ namespace CrowdGod.WebMVC.Controllers
 
             var question = await _context.Questions
                 .FirstOrDefaultAsync(m => m.QuestionId == id);
+            var answer = await _context.Answers
+                .FirstOrDefaultAsync(m => m.QuestionId == id);
             if (question == null)
             {
                 return NotFound();
