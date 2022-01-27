@@ -146,7 +146,9 @@ namespace CrowdGod.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var question = await _context.Questions.FindAsync(id);
+            var question = await _context.Questions
+                .Include(r => r.Answers)
+                .FirstOrDefaultAsync(m => m.QuestionId == id);
             _context.Questions.Remove(question);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
