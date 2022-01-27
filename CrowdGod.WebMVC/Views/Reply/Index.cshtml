@@ -4,50 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedUtc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedUtc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Answer)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedUtc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedUtc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Answer.Content)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ReplyId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ReplyId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ReplyId">Delete</a>
-            </td>
-        </tr>
+        <div class="container bg-dark text-light">
+            <div class="row">
+                <div class="col-5">
+                    @Html.DisplayFor(modelItem => item.Content)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    @Html.DisplayFor(modelItem => item.CreatedUtc)
+                </div>
+            </div>
+        </div>
+        <a asp-action="Edit" asp-controller="Reply" class="card-link" asp-route-id="@item.ReplyId">Edit</a>
+        <a asp-action="Details" asp-controller="Reply" class="card-link" asp-route-id="@item.ReplyId">Details</a>
+        <a asp-action="Delete" asp-controller="Reply" class="card-link" asp-route-id="@item.ReplyId">Delete</a>
 }
-    </tbody>
-</table>

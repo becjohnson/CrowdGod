@@ -58,7 +58,8 @@ namespace CrowdGod.WebMVC.Controllers
         {
             reply.AnswerId = id;
             var answer = _context.Answers.SingleOrDefault(a => a.AnswerId == id);
-            answer.QuestionId = reply.QuestionId;
+            var bar = answer.QuestionId;
+            bar = reply.QuestionId;
             var question = _context.Questions.SingleOrDefault(q => q.QuestionId == reply.QuestionId);
             reply.AnswerId = id;
             reply.Answer = answer;
@@ -69,7 +70,7 @@ namespace CrowdGod.WebMVC.Controllers
                 _context.Replies.Add(reply);
                 answer.Replies.Add(reply);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Question", new { @id = .QuestionId });
+                return RedirectToAction(nameof(Index));
             }
             return View(reply);
         }
